@@ -1,0 +1,4 @@
+defaults:
+  - paths: default
+  - transformers: ???
+  - _self_

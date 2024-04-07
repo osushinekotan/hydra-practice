@@ -1,0 +1,23 @@
+model_name: bert-base-uncased
+num_labels: 2
+
+model: transformers.AutoModelForSequenceClassification.from_pretrained
+tokenizer: transformers.AutoTokenizer.from_pretrained
+
+trainer:
+  _target_: transformers.Trainer
+  args:
+    _target_: transformers.TrainingArguments
+    output_dir: ${paths.output_dir}
+    logging_dir: ${paths.logging_dir}
+    per_device_train_batch_size: 8
+    per_device_eval_batch_size: 8
+    evaluation_strategy: epoch
+    num_train_epochs: 3
+    learning_rate: 2e-5
+    warmup_ratio: 0
+    gradient_accumulation_steps: 1
+    eval_accumulation_steps: 1
+    weight_decay: 0.01
+    save_strategy: epoch
+    fp16: False
